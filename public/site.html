@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Saroja Poojary – Coastal Kitchen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=DM+Sans:wght@300;400;500&amp;family=Playfair+Display:ital,wght@1,400;1,600&amp;display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --saffron:    #E8722A;
+      --turmeric:   #D4A017;
+      --clay:       #C4612A;
+      --cream:      #FAF3E8;
+      --warm-white: #FFFDF7;
+      --dark:       #1C1208;
+      --mid:        #4A3520;
+      --muted:      #9A7D5E;
+      --leaf:       #4A6741;
+      --rust:       #A0391A;
+    }
+
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--warm-white);
+  color: var(--dark);
+  overflow-x: hidden;
+}
+
+/* ── NOISE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.2rem 4rem;
+  background: rgba(250, 243, 232, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(196, 97, 42, 0.15);
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--clay);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mid);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--saffron); }
+
+.nav-cta {
+  background: var(--saffron);
+  color: white !important;
+  padding: 0.55rem 1.4rem;
+  border-radius: 2rem;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--clay) !important; color: white !important; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-left {
+  display: flex; flex-direction: column;
+  justify-content: center;
+  padding: 8rem 4rem 6rem 5rem;
+  position: relative; z-index: 2;
+}
+
+.hero-eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--saffron);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block; width: 40px; height: 1px;
+  background: var(--saffron);
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--dark);
+  margin-bottom: 0.3rem;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--clay);
+}
+
+.hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+.hero-desc {
+  font-size: 1rem;
+  color: var(--mid);
+  line-height: 1.75;
+  max-width: 440px;
+  margin-bottom: 3rem;
+  font-weight: 300;
+}
+
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: var(--saffron);
+  color: white;
+  padding: 0.9rem 2rem;
+  border-radius: 3rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: all 0.25s;
+  box-shadow: 0 4px 20px rgba(232, 114, 42, 0.35);
+}
+.btn-primary:hover {
+  background: var(--clay);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(232, 114, 42, 0.4);
+}
+
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  border: 1.5px solid var(--clay);
+  color: var(--clay);
+  padding: 0.9rem 2rem;
+  border-radius: 3rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+.btn-secondary:hover {
+  background: var(--clay);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.hero-stats {
+  margin-top: 4rem;
+  display: flex; gap: 3rem;
+}
+
+.stat { }
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--saffron);
+}
+.stat-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── HERO RIGHT – decorative ── */
+.hero-right {
+  position: relative; overflow: hidden;
+  background: linear-gradient(135deg, #F5E6C8 0%, #EDD09A 50%, #D4A55A 100%);
+}
+
+.hero-right::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 70% 30%, rgba(232,114,42,0.25) 0%, transparent 60%),
+    radial-gradient(circle at 20% 80%, rgba(74,103,65,0.2) 0%, transparent 50%);
+}
+
+.hero-pattern {
+  position: absolute; inset: 0;
+  opacity: 0.08;
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--clay) 0px, var(--clay) 1px,
+    transparent 1px, transparent 20px
+  );
+}
+
+.hero-illustration {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pot-svg {
+  width: 380px;
+  height: 380px;
+  filter: drop-shadow(0 30px 60px rgba(196, 97, 42, 0.4));
+  animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(-1deg); }
+  50%       { transform: translateY(-18px) rotate(1deg); }
+}
+
+.hero-badge {
+  position: absolute;
+  bottom: 3rem; right: 3rem;
+  width: 120px; height: 120px;
+  background: var(--saffron);
+  border-radius: 50%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  color: white;
+  animation: spin-slow 20s linear infinite;
+}
+
+.hero-badge-text {
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.6;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ── MARQUEE ── */
+.marquee-wrap {
+  background: var(--dark);
+  padding: 1rem 0;
+  overflow: hidden;
+  position: relative; z-index: 2;
+}
+
+.marquee-track {
+  display: flex; gap: 4rem;
+  white-space: nowrap;
+  animation: marquee 25s linear infinite;
+}
+
+.marquee-item {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--turmeric);
+  flex-shrink: 0;
+  display: flex; align-items: center; gap: 1rem;
+}
+.marquee-dot { color: var(--saffron); font-style: normal; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── SECTION COMMONS ── */
+section { position: relative; z-index: 1; }
+.section-inner { max-width: 1200px; margin: 0 auto; padding: 0 3rem; }
+
+.section-tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--saffron); font-weight: 500; margin-bottom: 1rem;
+}
+.section-tag::after {
+  content: '';
+  display: block; width: 30px; height: 1px;
+  background: var(--saffron);
+}
+
+.section-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--dark);
+}
+
+/* ── ABOUT ── */
+.about { padding: 8rem 0; background: var(--cream); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.about-image-wrap {
+  position: relative;
+}
+
+.about-image-frame {
+  width: 100%;
+  aspect-ratio: 4/5;
+  background: linear-gradient(135deg, #E8C98A, #D4A017, #C4612A);
+  border-radius: 2px 80px 2px 80px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 20px 20px 60px rgba(196, 97, 42, 0.25);
+}
+
+.about-image-frame::before {
+  content: '🫙';
+  font-size: 10rem;
+  position: absolute;
+  bottom: 2rem; right: 1rem;
+  opacity: 0.15;
+}
+
+.about-image-inner {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 3rem;
+}
+
+.about-avatar-placeholder {
+  width: 180px; height: 180px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.5);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 5rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-name-card {
+  text-align: center;
+  color: white;
+}
+.about-name-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.about-name-card p {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-top: 0.3rem;
+}
+
+.about-floater {
+  position: absolute;
+  top: -1.5rem; right: -1.5rem;
+  background: white;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.floater-icon { font-size: 1.8rem; }
+.floater-text { font-size: 0.75rem; color: var(--mid); }
+.floater-text strong { display: block; font-size: 1rem; color: var(--dark); }
+
+.about-text { }
+.about-text p {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--mid);
+  font-weight: 300;
+  margin-bottom: 1.4rem;
+}
+
+.about-specialties {
+  display: flex; flex-wrap: wrap; gap: 0.6rem;
+  margin-top: 2rem;
+}
+.specialty-chip {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: white;
+  border: 1px solid rgba(196, 97, 42, 0.2);
+  color: var(--clay);
+  padding: 0.4rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* ── RECIPES ── */
+.recipes { padding: 8rem 0; background: var(--warm-white); }
+
+.recipes-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 4rem;
+}
+
+.recipes-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1.5rem;
+}
+
+.recipe-card {
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s;
+  text-decoration: none;
+  display: block;
+}
+.recipe-card:hover { transform: translateY(-6px); }
+.recipe-card:hover .recipe-overlay { opacity: 1; }
+
+.recipe-card.featured { grid-row: 1 / 3; }
+
+.recipe-thumb {
+  width: 100%; height: 100%;
+  min-height: 200px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem;
+  position: relative;
+}
+
+.recipe-card.featured .recipe-thumb { min-height: 480px; }
+
+.r1 { background: linear-gradient(135deg, #8B1A1A, #C4612A); }
+.r2 { background: linear-gradient(135deg, #2D5016, #4A6741); }
+.r3 { background: linear-gradient(135deg, #6B4C11, #D4A017); }
+.r4 { background: linear-gradient(135deg, #1A4060, #2E7D9E); }
+.r5 { background: linear-gradient(135deg, #5C1A5C, #8B3A8B); }
+
+.recipe-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  transition: opacity 0.3s;
+  display: flex; align-items: center; justify-content: center;
+}
+.play-btn {
+  width: 56px; height: 56px;
+  background: white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+}
+
+.recipe-info {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+  color: white;
+}
+
+.recipe-tag {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--turmeric);
+  margin-bottom: 0.4rem;
+}
+
+.recipe-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.recipe-card.featured .recipe-title {
+  font-size: 1.8rem;
+}
+
+.recipe-meta {
+  display: flex; align-items: center; gap: 1rem;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+/* ── VIDEO SECTION ── */
+.videos { padding: 8rem 0; background: var(--dark); }
+
+.videos .section-heading { color: var(--cream); }
+.videos .section-tag { color: var(--turmeric); }
+.videos .section-tag::after { background: var(--turmeric); }
+
+.videos-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 4rem;
+}
+
+.video-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.video-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s;
+  cursor: pointer;
+  text-decoration: none;
+}
+.video-card:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(232, 114, 42, 0.4);
+  transform: translateY(-4px);
+}
+
+.video-thumb {
+  aspect-ratio: 16/9;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem;
+  position: relative;
+}
+.v1 { background: linear-gradient(135deg, #3D1C02, #8B4513); }
+.v2 { background: linear-gradient(135deg, #0D2B1A, #1F5C3A); }
+.v3 { background: linear-gradient(135deg, #1A0A2E, #4A2070); }
+
+.video-play-overlay {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.3);
+}
+.yt-play-btn {
+  width: 50px; height: 50px;
+  background: rgba(255,0,0,0.9);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  transition: transform 0.2s;
+}
+.video-card:hover .yt-play-btn { transform: scale(1.1); }
+
+.video-info { padding: 1.2rem; }
+
+.video-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--cream);
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.video-meta {
+  display: flex; gap: 1rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* ── CATEGORIES ── */
+.categories { padding: 7rem 0; background: var(--cream); }
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+
+.cat-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  border: 1px solid rgba(196, 97, 42, 0.1);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.cat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(196, 97, 42, 0.15);
+  border-color: var(--saffron);
+}
+
+.cat-emoji { font-size: 3rem; display: block; margin-bottom: 1rem; }
+
+.cat-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 0.4rem;
+}
+
+.cat-count {
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+/* ── SUBSCRIBE STRIP ── */
+.subscribe-strip {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, var(--clay) 0%, var(--saffron) 50%, var(--turmeric) 100%);
+  position: relative; overflow: hidden;
+}
+
+.subscribe-strip::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px,
+    transparent 1px, transparent 30px
+  );
+}
+
+.subscribe-content {
+  text-align: center;
+  position: relative; z-index: 1;
+}
+
+.subscribe-content h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.subscribe-content h2 em {
+  font-style: italic;
+  opacity: 0.85;
+}
+
+.subscribe-content p {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
+
+.subscribe-btn {
+  display: inline-flex; align-items: center; gap: 0.8rem;
+  background: white;
+  color: var(--clay);
+  padding: 1rem 2.5rem;
+  border-radius: 3rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  transition: all 0.25s;
+}
+.subscribe-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark);
+  padding: 5rem 0 2.5rem;
+  color: var(--muted);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 5rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 2rem;
+}
+
+.footer-brand { }
+
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--cream);
+  display: block; margin-bottom: 1rem;
+}
+
+.footer-desc {
+  font-size: 0.9rem;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 320px;
+  font-weight: 300;
+}
+
+.social-links {
+  display: flex; gap: 0.8rem;
+  margin-top: 1.8rem;
+}
+.social-link {
+  width: 38px; height: 38px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: var(--muted);
+  transition: all 0.2s;
+}
+.social-link:hover {
+  border-color: var(--saffron);
+  color: var(--saffron);
+  background: rgba(232, 114, 42, 0.1);
+}
+
+.footer-col h4 {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cream);
+  margin-bottom: 1.5rem;
+}
+
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 0.7rem; }
+.footer-links a {
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--saffron); }
+
+.footer-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 0.8rem;
+  color: rgba(154, 125, 94, 0.5);
+}
+
+/* ── ANIMATIONS ── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 1.2rem 2rem; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 7rem 2rem 4rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .recipes-grid { grid-template-columns: 1fr; }
+  .recipe-card.featured { grid-row: auto; }
+  .video-row { grid-template-columns: 1fr; }
+  .cat-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .section-inner { padding: 0 1.5rem; }
+  .recipes-header, .videos-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+}
+
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+
+  <nav>
+    <a href="#" class="nav-logo">Saroja Poojary</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#recipes">Recipes</a></li>
+      <li><a href="#videos">Videos</a></li>
+      <li><a href="#categories">Categories</a></li>
+      <li><a href="https://www.youtube.com/@SarojaPoojary-v7h" target="_blank" rel="noopener noreferrer" class="nav-cta">▶ YouTube</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero" id="home">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Coastal Karnataka Kitchen</div>
+      <h1 class="hero-title">
+        Saroja<br>
+        <em>Poojary</em>
+      </h1>
+      <p class="hero-subtitle">Authentic Tulu &amp; Kannada Flavours</p>
+      <p class="hero-desc">
+        Step into a kitchen where tradition meets love. Discover the rich, aromatic flavours of coastal Karnataka — from spicy fish curries to melt-in-the-mouth sweets passed down through generations.
+      </p>
+      <div class="hero-actions">
+        <a href="https://www.youtube.com/@SarojaPoojary-v7h" target="_blank" rel="noopener noreferrer" class="btn-primary">
+          ▶ Watch on YouTube
+        </a>
+        <a href="#recipes" class="btn-secondary">
+          🍽 Browse Recipes
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">100+</div>
+          <div class="stat-label">Recipes</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Flavours</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">1</div>
+          <div class="stat-label">Loving Kitchen</div>
+        </div>
+      </div>
+    </div>
+
+
+<div class="hero-right">
+  <div class="hero-pattern"></div>
+  <div class="hero-illustration">
+    <svg class="pot-svg" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Steam -->
+      <path d="M120 60 Q115 40 125 25 Q135 10 130 -5" stroke="rgba(255,255,255,0.4)" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path d="M150 55 Q145 35 155 20 Q165 5 160 -10" stroke="rgba(255,255,255,0.4)" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path d="M180 60 Q175 40 185 25 Q195 10 190 -5" stroke="rgba(255,255,255,0.4)" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <!-- Lid -->
+      <ellipse cx="150" cy="85" rx="80" ry="18" fill="#C4612A"/>
+      <rect x="70" y="73" width="160" height="14" rx="7" fill="#C4612A"/>
+      <ellipse cx="150" cy="73" rx="20" ry="8" fill="#A0391A"/>
+      <!-- Pot body -->
+      <path d="M65 100 Q55 180 70 230 Q85 270 150 272 Q215 270 230 230 Q245 180 235 100 Z" fill="#D4691F"/>
+      <path d="M65 100 Q55 180 70 230 Q85 270 150 272 Q215 270 230 230 Q245 180 235 100 Z" fill="url(#potGrad)"/>
+      <!-- Pot top opening -->
+      <ellipse cx="150" cy="100" rx="85" ry="20" fill="#C4612A"/>
+      <!-- Handles -->
+      <path d="M65 130 Q40 130 38 155 Q36 180 65 175" stroke="#A0391A" stroke-width="12" fill="none" stroke-linecap="round"/>
+      <path d="M235 130 Q260 130 262 155 Q264 180 235 175" stroke="#A0391A" stroke-width="12" fill="none" stroke-linecap="round"/>
+      <!-- Highlight -->
+      <ellipse cx="115" cy="145" rx="15" ry="35" fill="rgba(255,255,255,0.15)" transform="rotate(-15 115 145)"/>
+      <!-- Content bubbling -->
+      <ellipse cx="150" cy="98" rx="78" ry="17" fill="#E8722A" opacity="0.7"/>
+      <circle cx="130" cy="95" r="4" fill="rgba(255,255,255,0.3)"/>
+      <circle cx="160" cy="92" r="3" fill="rgba(255,255,255,0.25)"/>
+      <circle cx="175" cy="97" r="5" fill="rgba(255,255,255,0.2)"/>
+      <!-- Decorative dots on pot -->
+      <circle cx="150" cy="185" r="4" fill="rgba(255,255,255,0.2)"/>
+      <circle cx="130" cy="195" r="3" fill="rgba(255,255,255,0.15)"/>
+      <circle cx="170" cy="193" r="3" fill="rgba(255,255,255,0.15)"/>
+      <defs>
+        <linearGradient id="potGrad" x1="65" y1="100" x2="235" y2="272" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="rgba(255,150,80,0.3)"/>
+          <stop offset="100%" stop-color="rgba(0,0,0,0.25)"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+  <div class="hero-badge">
+    <div class="hero-badge-text">Home ✦ Cooked ✦ With ✦ Love ✦ </div>
+  </div>
+</div>
+
+
+  </section>
+
+  <!-- MARQUEE -->
+
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="marquee-item">Fish Curry <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Neer Dosa <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Chicken Sukka <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Sannas <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Kori Rotti <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Pork Bafat <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Mangalore Buns <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Halwa <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Fish Curry <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Neer Dosa <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Chicken Sukka <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Sannas <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Kori Rotti <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Pork Bafat <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Mangalore Buns <span class="marquee-dot">✦</span></span>
+      <span class="marquee-item">Halwa <span class="marquee-dot">✦</span></span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+
+  <section class="about" id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-image-wrap fade-up">
+          <div class="about-image-frame">
+            <div class="about-image-inner">
+              <div class="about-avatar-placeholder">👩‍🍳</div>
+              <div class="about-name-card">
+                <h3>Saroja Poojary</h3>
+                <p>Coastal Karnataka Chef</p>
+              </div>
+            </div>
+          </div>
+          <div class="about-floater">
+            <div class="floater-icon">🏠</div>
+            <div class="floater-text">
+              <strong>Home Kitchen</strong>
+              Traditional Recipes
+            </div>
+          </div>
+        </div>
+
+
+    <div class="about-text fade-up">
+      <div class="section-tag">About Me</div>
+      <h2 class="section-heading" style="margin-bottom:1.8rem;">
+        Where Every Dish<br><em style="font-family:'Playfair Display',serif; font-style:italic; color:var(--clay);">Tells a Story</em>
+      </h2>
+      <p>
+        Welcome to my little corner of the internet! I'm Saroja Poojary, and I've been cooking the traditional flavours of coastal Karnataka my entire life — recipes I learned from my mother, my grandmother, and the kitchens of Mangalore.
+      </p>
+      <p>
+        On my YouTube channel, I share authentic Tulu and Kannada recipes that are made with love, using locally sourced spices and time-honoured techniques. From everyday dals to festive feasts, every video is cooked with heart.
+      </p>
+      <p>
+        Whether you're a seasoned cook or a curious beginner, you'll find something delicious here. Pull up a chair — the food's almost ready!
+      </p>
+      <div class="about-specialties">
+        <span class="specialty-chip">🐟 Coastal Seafood</span>
+        <span class="specialty-chip">🌶️ Spice Blends</span>
+        <span class="specialty-chip">🥥 Coconut Curries</span>
+        <span class="specialty-chip">🍚 Rice Dishes</span>
+        <span class="specialty-chip">🍬 Traditional Sweets</span>
+        <span class="specialty-chip">🫙 Pickles &amp; Chutneys</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  </section>
+
+  <!-- RECIPES -->
+
+  <section class="recipes" id="recipes">
+    <div class="section-inner">
+      <div class="recipes-header fade-up">
+        <div>
+          <div class="section-tag">Signature Dishes</div>
+          <h2 class="section-heading">Popular Recipes</h2>
+        </div>
+        <a href="https://www.youtube.com/@SarojaPoojary-v7h" target="_blank" rel="noopener noreferrer" class="btn-secondary">View All →</a>
+      </div>
+
+
+  <div class="recipes-grid fade-up">
+    <a href="https://www.youtube.com/@SarojaPoojary-v7h" target="_blank" rel="noopener noreferrer" class="recipe-card featured">
+      <div class="recipe-thumb r1">🐟</div>
+      <div class="recipe-overlay"><div class="play-btn">▶</div></div>
+      <div class="recipe-info">
+        <div class="recipe-tag">⭐ Most Popular</div>
+        <div class="recipe-title">Mangalorean Fish Curry with Fresh Coconut</div>
+        <div class="recipe-meta">
+          <span>⏱ 45 min</span>
+          <span>🌶 Medium spice</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="https://www.youtube.com/@SarojaPoojary-v7h" target="_blank" rel="noopener noreferrer" class="recipe-card">
+      <div class="recipe-thumb r2" style="min-height:160px; font-size:3rem;">🥥</div>
+      <div class="recipe-overlay"><div class="play-btn">▶</div></div>
+      <div class="recipe-info">
+        <div class="recipe-tag">Breakfast</div>
+        <div class="recipe-title">Soft Neer Dosa</div>
+        <div class="recipe-meta"><span>⏱ 20 min</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.youtube.com/@SarojaPoojary-v7h" target="_blank" rel="noopener noreferrer" class="recipe-card">
+      <div class="recipe-thumb r3" style="min-height:160px; font-size:3rem;">🍗</div>
+      <div class="recipe-overlay"><div class="play-btn">▶</div></div>
+      <div class="recipe-info">
+        <div class="recipe-tag">Non-Veg</div>
+        <div class="recipe-title">Kori Sukka</div>
+        <div class="recipe-meta"><span>⏱ 60 min</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.youtube.com/@SarojaPoojary-v7h" target="_blank" rel="noopener noreferrer" class="recipe-card">
+      <div class="recipe-thumb r4" style="min-height:160px; font-size:3rem;">🫓</div>
+      <div class="recipe-overlay"><div class="play-btn">▶</div></div>
+      <div class="recipe-info">
+        <div class="recipe-tag">Snack</div>
+        <div class="recipe-title">Mangalore Buns</div>
+        <div class="recipe-meta"><span>⏱ 30 min</span></div>
+      </div>
+    </a>
+
+    <a href="https://www.youtube.com/@SarojaPoojary-v7h" target="_blank" rel="noopener noreferrer" class="recipe-card">
+      <div class="recipe-thumb r5" style="min-height:160px; font-size:3rem;">🍮</div>
+      <div class="recipe-overlay"><div class="play-btn">▶</div></div>
+      <div class="recipe-info">
+        <div class="recipe-tag">Dessert</div>
+        <div class="recipe-title">Halwa</div>
+        <div class="recipe-meta"><span>⏱ 40 min</span></div>
+      </div>
+    </a>
+  </div>
+</div>
+
+
+  </section>
+
+  <!-- VIDEOS -->
+
+  <section class="videos" id="videos">
+    <div class="section-inner">
+      <div class="videos-header fade-up">
+        <div>
+          <div class="section-tag">Latest Content</div>
+          <h2 class="section-heading">Watch on YouTube</h2>
+        </div>
+        <a href="https://www.youtube.com/@SarojaPoojary-v7h" target="_blank" rel="noopener noreferrer" class="btn-primary">
+          ▶ Subscribe Now
+        </a>
+      </div>
+
+
+  <div class="video-row fade-up">
+    <a href="https://www.youtube.com/@SarojaPoojary-v7h" target="_blank" rel="noopener noreferrer" class="video-card">
+      <div class="video-thumb v1">
+        <div style="font-size:3rem;">🐠</div>
+        <div class="video-play-overlay">
+          <div class="yt-play-btn">▶</div>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="video-title">Traditional Prawn Masala — Grandmother's Recipe</div>
+        <div class="video-meta">
+          <span>🕐 18:45</span>
+          <span>👁 Coastal Series</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="https://www.youtube.com/@SarojaPoojary-v7h" target="_blank" rel="noopener noreferrer" class="video-card">
+      <div class="video-thumb v2">
+        <div style="font-size:3rem;">🥘</div>
+        <div class="video-play-overlay">
+          <div class="yt-play-btn">▶</div>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="video-title">Authentic Bafat Powder — Secret Spice Blend</div>
+        <div class="video-meta">
+          <span>🕐 12:30</span>
+          <span>👁 Spice Series</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="https://www.youtube.com/@SarojaPoojary-v7h" target="_blank" rel="noopener noreferrer" class="video-card">
+      <div class="video-thumb v3">
+        <div style="font-size:3rem;">🍛</div>
+        <div class="video-play-overlay">
+          <div class="yt-play-btn">▶</div>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="video-title">Sanna — Fluffy Coconut Rice Cakes for Festivals</div>
+        <div class="video-meta">
+          <span>🕐 22:10</span>
+          <span>👁 Festival Special</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+
+  </section>
+
+  <!-- CATEGORIES -->
+
+  <section class="categories" id="categories">
+    <div class="section-inner">
+      <div style="text-align:center; margin-bottom:0;" class="fade-up">
+        <div class="section-tag" style="justify-content:center; display:inline-flex;">Explore</div>
+        <h2 class="section-heading">Recipe Categories</h2>
+      </div>
+
+
+  <div class="cat-grid">
+    <a href="https://www.youtube.com/@SarojaPoojary-v7h" target="_blank" rel="noopener noreferrer" style="text-decoration:none;" class="cat-card fade-up">
+      <span class="cat-emoji">🐟</span>
+      <div class="cat-title">Seafood</div>
+      <div class="cat-count">Fish • Prawns • Crabs</div>
+    </a>
+    <a href="https://www.youtube.com/@SarojaPoojary-v7h" target="_blank" rel="noopener noreferrer" style="text-decoration:none;" class="cat-card fade-up">
+      <span class="cat-emoji">🍚</span>
+      <div class="cat-title">Rice &amp; Dosas</div>
+      <div class="cat-count">Neer Dosa • Sannas • Akki Rotti</div>
+    </a>
+    <a href="https://www.youtube.com/@SarojaPoojary-v7h" target="_blank" rel="noopener noreferrer" style="text-decoration:none;" class="cat-card fade-up">
+      <span class="cat-emoji">🍗</span>
+      <div class="cat-title">Meat Dishes</div>
+      <div class="cat-count">Chicken • Mutton • Pork</div>
+    </a>
+    <a href="https://www.youtube.com/@SarojaPoojary-v7h" target="_blank" rel="noopener noreferrer" style="text-decoration:none;" class="cat-card fade-up">
+      <span class="cat-emoji">🥬</span>
+      <div class="cat-title">Vegetarian</div>
+      <div class="cat-count">Dal • Sabzi • Chutneys</div>
+    </a>
+    <a href="https://www.youtube.com/@SarojaPoojary-v7h" target="_blank" rel="noopener noreferrer" style="text-decoration:none;" class="cat-card fade-up">
+      <span class="cat-emoji">🍬</span>
+      <div class="cat-title">Sweets</div>
+      <div class="cat-count">Halwa • Payasam • Ladoo</div>
+    </a>
+    <a href="https://www.youtube.com/@SarojaPoojary-v7h" target="_blank" rel="noopener noreferrer" style="text-decoration:none;" class="cat-card fade-up">
+      <span class="cat-emoji">🫙</span>
+      <div class="cat-title">Pickles &amp; More</div>
+      <div class="cat-count">Achar • Chutneys • Masalas</div>
+    </a>
+    <a href="https://www.youtube.com/@SarojaPoojary-v7h" target="_blank" rel="noopener noreferrer" style="text-decoration:none;" class="cat-card fade-up">
+      <span class="cat-emoji">☕</span>
+      <div class="cat-title">Beverages</div>
+      <div class="cat-count">Filter Coffee • Sherbet • More</div>
+    </a>
+    <a href="https://www.youtube.com/@SarojaPoojary-v7h" target="_blank" rel="noopener noreferrer" style="text-decoration:none;" class="cat-card fade-up">
+      <span class="cat-emoji">🎉</span>
+      <div class="cat-title">Festival Specials</div>
+      <div class="cat-count">Ugadi • Onam • Christmas</div>
+    </a>
+  </div>
+</div>
+
+
+  </section>
+
+  <!-- SUBSCRIBE STRIP -->
+
+  <section class="subscribe-strip">
+    <div class="section-inner">
+      <div class="subscribe-content fade-up">
+        <h2>Never Miss a Recipe.<br><em>Subscribe Today.</em></h2>
+        <p>Join the family and get notified whenever a new dish is ready!</p>
+        <a href="https://www.youtube.com/@SarojaPoojary-v7h" target="_blank" rel="noopener noreferrer" class="subscribe-btn">
+          ▶ Subscribe on YouTube
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <div class="section-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="footer-logo">Saroja Poojary</span>
+          <p class="footer-desc">
+            Sharing the authentic tastes of coastal Karnataka — one recipe at a time. Made with tradition, love, and a whole lot of coconut.
+          </p>
+          <div class="social-links">
+            <a href="https://www.youtube.com/@SarojaPoojary-v7h" target="_blank" rel="noopener noreferrer" class="social-link" title="YouTube">▶</a>
+            <a href="#" class="social-link" title="Instagram">📸</a>
+            <a href="#" class="social-link" title="Facebook">f</a>
+          </div>
+        </div>
+
+
+    <div class="footer-col">
+      <h4>Recipes</h4>
+      <ul class="footer-links">
+        <li><a href="#">Seafood</a></li>
+        <li><a href="#">Chicken &amp; Meat</a></li>
+        <li><a href="#">Vegetarian</a></li>
+        <li><a href="#">Rice &amp; Dosas</a></li>
+        <li><a href="#">Sweets</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Channel</h4>
+      <ul class="footer-links">
+        <li><a href="https://www.youtube.com/@SarojaPoojary-v7h" target="_blank" rel="noopener noreferrer">YouTube Channel</a></li>
+        <li><a href="#about">About Saroja</a></li>
+        <li><a href="#videos">Latest Videos</a></li>
+        <li><a href="#">Festival Specials</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2025 Saroja Poojary. All rights reserved.</span>
+    <span>Made with ❤️ and 🥥</span>
+  </div>
+</div>
+
+
+  </footer>
+
+  <script>
+    // Intersection Observer for fade-up animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Smooth nav links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
